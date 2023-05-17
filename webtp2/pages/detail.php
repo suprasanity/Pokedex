@@ -24,9 +24,22 @@ foreach ($pokemons as $p){
 </ul>
 <p>Evolution :
 <?php
-//it has to be  a link to the pokemon page
+//it has to be  a link to the pokemon password_get_info(hash)
+if($pokemon->getEvolution()!=null){
+	foreach ($pokemons as $p){
+	    $t = unserialize($p);
+	    if($pokemon->getEvolution() == $t->getNom()){
+	        $evoPokemon = $t->getId();
+	    }
+	}
+echo "<a href=\"index.php?page=detail&id=".$evoPokemon."\">".$pokemon->getEvolution()."</a></p>";
 
-echo $pokemon->getEvolution();
+}else{
+	echo "<p>".$pokemon->getEvolution()."</a></p>";
+
+}
+
+
 ?>
 </p>
 <?php echo "<p><a href=\"index.php?page=list&action=remove&id=".$pokemon->getId()."\">Supprimer</a></p>"; ?>
