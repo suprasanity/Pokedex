@@ -1,0 +1,101 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.1
+-- https://www.phpmyadmin.net/
+--
+-- Hôte : 127.0.0.1:3306
+-- Généré le : mer. 17 mai 2023 à 08:09
+-- Version du serveur : 5.7.36
+-- Version de PHP : 7.4.26
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de données : `pokedex`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `pokemon`
+--
+
+DROP TABLE IF EXISTS `pokemon`;
+CREATE TABLE IF NOT EXISTS `pokemon` (
+  `id` int(11) NOT NULL,
+  `nom` varchar(255) DEFAULT NULL,
+  `evolution` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `evolution` (`evolution`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `pokemon`
+--
+
+INSERT INTO `pokemon` (`id`, `nom`, `evolution`) VALUES
+(13, 'a', 445);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `pokemon_type`
+--
+
+DROP TABLE IF EXISTS `pokemon_type`;
+CREATE TABLE IF NOT EXISTS `pokemon_type` (
+  `id_pokemon_type` int(11) NOT NULL AUTO_INCREMENT,
+  `id_pokemon` int(11) DEFAULT NULL,
+  `id_type` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_pokemon_type`),
+  KEY `id_pokemon` (`id_pokemon`),
+  KEY `id_type` (`id_type`)
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `pokemon_type`
+--
+
+INSERT INTO `pokemon_type` (`id_pokemon_type`, `id_pokemon`, `id_type`) VALUES
+(12, 445, 3),
+(13, 445, 2),
+(14, 34, 3),
+(15, 345, 3),
+(16, 13, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `type`
+--
+
+DROP TABLE IF EXISTS `type`;
+CREATE TABLE IF NOT EXISTS `type` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `type`
+--
+
+INSERT INTO `type` (`id`, `name`) VALUES
+(1, 'Plante'),
+(2, 'Feu'),
+(3, 'Eau'),
+(4, 'Électrique'),
+(5, 'Fée'),
+(6, 'Roche');
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
